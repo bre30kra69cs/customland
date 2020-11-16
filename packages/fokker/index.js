@@ -1,7 +1,5 @@
-const {log} = require('./src/log');
-const {error} = require('./src/error');
+const {lable} = require('./src/lables');
 
 module.exports = {
-  log,
-  error,
+  lable,
 };
