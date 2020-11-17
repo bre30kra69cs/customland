@@ -1,5 +1,5 @@
-const {lable} = require('./src/lables');
+const {createLogger} = require('./src/main');
 
 module.exports = {
-  lable,
+  createLogger,
 };
