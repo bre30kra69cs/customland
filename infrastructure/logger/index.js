@@ -1,41 +1,20 @@
-const {createLogger} = require('../../packages/fokker');
+const {createLogger, formatters, handlers} = require('../../packages/fokker');
 
-const {lable} = createLogger();
+const consoleHandler = handlers.console({
+  type: 'sequence',
+});
 
-function log(...messages) {
-  lable({
-    title: '🔧  log',
-    messages,
-    config: {
-      type: 'blue',
-      counting: true,
-    },
-  });
-}
+const fileHandler = handlers.file({
+  name: 'test',
+});
 
-function error(...messages) {
-  lable({
-    title: '🔥  error',
-    messages,
-    config: {
-      type: 'red',
-      counting: true,
-    },
-  });
-}
+const {createDispatcher} = createLogger({
+  handlers: [fileHandler],
+});
 
-function global(title) {
-  lable({
-    title: `🌍  ${title.toUpperCase()}`,
-    config: {
-      type: 'green',
-      counting: false,
-    },
-  });
-}
+const commonDispatcher = createDispatcher({
+  level: 'error',
+  formatter: formatters.common,
+});
 
-module.exports = {
-  log,
-  error,
-  global,
-};
+commonDispatcher(1, 2);
