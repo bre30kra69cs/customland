@@ -8,7 +8,6 @@ function defaultFormatter() {
 
 function createFormatterMiddleware(formatterConfig, counter) {
   const {formatter, type, level} = formatterConfig;
-
   const messageFormatter = formatter({
     ...formatterConfig,
     counter,
@@ -17,7 +16,6 @@ function createFormatterMiddleware(formatterConfig, counter) {
 
   return function formatterAction(...source) {
     const result = messageFormatter(...source);
-
     return {
       type,
       level,

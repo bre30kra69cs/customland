@@ -20,25 +20,15 @@ const defaultFormatterConfig = {
 
 function createLogger(initLoggerConfig = defaultLoggerConfig) {
   const loggerConfig = {...defaultLoggerConfig, ...initLoggerConfig};
-
   const {handlers, middelwares, countInit} = loggerConfig;
-
   const handlerMiddleware = createHandlerMiddleware(handlers);
-
   const counter = createCounter(countInit);
 
-  function createDispatcher(initFormatterConfig = defaultFormatterConfig) {
+  return function createDispatcher(initFormatterConfig = defaultFormatterConfig) {
     const formatterConfig = {...defaultFormatterConfig, ...initFormatterConfig};
-
     const formatterMiddleware = createFormatterMiddleware(formatterConfig, counter);
-
     const dispatch = pipe(formatterMiddleware, ...middelwares, handlerMiddleware);
-
     return dispatch;
-  }
-
-  return {
-    createDispatcher,
   };
 }
 

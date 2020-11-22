@@ -1,4 +1,7 @@
-[] Write syncer for file handler
-[] Rewrite file handler (protect, fallback, types, asyncs)
-[x] 22.11.2020 (Andrey Krasovsky) Upgrade console (protect, fallback)
-[x] 22.11.2020 (Andrey Krasovsky) Formate objects in label formatter
+## TASKS
+
+- Add platform Console Object selector with fallback - 22.11.2020 ✅
+- Write syncer for file handler - 🛠️
+- Rewrite file handler (protect, fallback, types, asyncs) - 🛠️
+- Upgrade console (protect, fallback) - 22.11.2020 ✅
+- Formate objects in label formatter - 22.11.2020 ✅

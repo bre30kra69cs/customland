@@ -1,36 +1,34 @@
+const {getConsoleHandler} = require('../../../utils/getConsoleHandler');
+
+const consoleHandler = getConsoleHandler();
+
 const parallel = {
   log(action) {
     const {result} = action;
-
-    console?.log?.(...result);
+    consoleHandler.log(...result);
   },
   error(action) {
     const {result} = action;
-
-    console?.error?.(...result);
+    consoleHandler.error(...result);
   },
   warn(action) {
     const {result} = action;
-
-    console?.warn?.(...result);
+    consoleHandler.warn(...result);
   },
 };
 
 const sequence = {
   log(action) {
     const {result} = action;
-
-    result.forEach((message) => console?.log?.(message));
+    result.forEach((message) => consoleHandler.log(message));
   },
   error(action) {
     const {result} = action;
-
-    result.forEach((message) => console?.error?.(message));
+    result.forEach((message) => consoleHandler.error(message));
   },
   warn(action) {
     const {result} = action;
-
-    result.forEach((message) => console?.warn?.(message));
+    result.forEach((message) => consoleHandler.warn(message));
   },
 };
 
@@ -45,11 +43,8 @@ const defaultHandlerConfig = {
 
 function createConsoleHandler(initHandlerConfig = defaultHandlerConfig) {
   const handlerConfig = {...defaultHandlerConfig, ...initHandlerConfig};
-
   const {type} = handlerConfig;
-
   const handler = typeMapper[type] || parallel;
-
   return handler;
 }
 

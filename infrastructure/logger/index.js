@@ -4,7 +4,7 @@ const consoleHandler = handlers.console({
   type: 'sequence',
 });
 
-const {createDispatcher} = createLogger({
+const createDispatcher = createLogger({
   handlers: [consoleHandler],
 });
 
