@@ -7,7 +7,7 @@ const {createFormatterMiddleware, defaultFormatter} = require('../formatter');
 const defaultLoggerConfig = {
   handlers: [defaultHandler],
   middelwares: [],
-  counterInit: 0,
+  countInit: 0,
 };
 
 const defaultFormatterConfig = {
@@ -21,11 +21,11 @@ const defaultFormatterConfig = {
 function createLogger(initLoggerConfig = defaultLoggerConfig) {
   const loggerConfig = {...defaultLoggerConfig, ...initLoggerConfig};
 
-  const {handlers, middelwares, counterInit} = loggerConfig;
-
-  const counter = createCounter(counterInit);
+  const {handlers, middelwares, countInit} = loggerConfig;
 
   const handlerMiddleware = createHandlerMiddleware(handlers);
+
+  const counter = createCounter(countInit);
 
   function createDispatcher(initFormatterConfig = defaultFormatterConfig) {
     const formatterConfig = {...defaultFormatterConfig, ...initFormatterConfig};

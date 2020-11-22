@@ -1,18 +1,18 @@
 const defaultHandler = {
   log(action) {
-    const {messages} = action;
+    const {result} = action;
 
-    console?.log?.(...messages);
+    console?.log?.(...result);
   },
   error(action) {
-    const {messages} = action;
+    const {result} = action;
 
-    console?.error?.(...messages);
+    console?.error?.(...result);
   },
   warn(action) {
-    const {messages} = action;
+    const {result} = action;
 
-    console?.warn?.(...messages);
+    console?.warn?.(...result);
   },
 };
 

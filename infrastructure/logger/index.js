@@ -4,17 +4,43 @@ const consoleHandler = handlers.console({
   type: 'sequence',
 });
 
-const fileHandler = handlers.file({
-  name: 'test',
-});
-
 const {createDispatcher} = createLogger({
-  handlers: [fileHandler],
+  handlers: [consoleHandler],
 });
 
-const commonDispatcher = createDispatcher({
+const logLabel = createDispatcher({
+  level: 'log',
+  count: true,
+  timestamp: true,
+  formatter: formatters.label,
+});
+
+const errorLabel = createDispatcher({
   level: 'error',
-  formatter: formatters.common,
+  count: true,
+  timestamp: true,
+  formatter: formatters.label,
 });
 
-commonDispatcher(1, 2);
+const warnLabel = createDispatcher({
+  level: 'warn',
+  count: true,
+  timestamp: true,
+  formatter: formatters.label,
+});
+
+const logger = {
+  log(...args) {
+    logLabel('LOG', ...args);
+  },
+  error(...args) {
+    errorLabel('ERROR', ...args);
+  },
+  warn(...args) {
+    warnLabel('WARN', ...args);
+  },
+};
+
+module.exports = {
+  logger,
+};

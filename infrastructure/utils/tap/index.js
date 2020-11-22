@@ -10,6 +10,11 @@ function tap(...args) {
   return args;
 }
 
+function filterTap(arg) {
+  return arg;
+}
+
 module.exports = {
   tap,
+  filterTap,
 };

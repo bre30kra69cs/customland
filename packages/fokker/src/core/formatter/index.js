@@ -1,3 +1,5 @@
+const {timestamper} = require('../timestamper');
+
 function defaultFormatter() {
   return function messageFormatter(...args) {
     return args;
@@ -5,22 +7,22 @@ function defaultFormatter() {
 }
 
 function createFormatterMiddleware(formatterConfig, counter) {
-  const {formatter, type, level, count, timestamp} = formatterConfig;
+  const {formatter, type, level} = formatterConfig;
 
   const messageFormatter = formatter({
-    count,
-    timestamp,
+    ...formatterConfig,
     counter,
+    timestamper,
   });
 
-  return function formatterAction(...messages) {
-    const output = messageFormatter(...messages);
+  return function formatterAction(...source) {
+    const result = messageFormatter(...source);
 
     return {
       type,
       level,
-      messages,
-      output,
+      source,
+      result,
     };
   };
 }

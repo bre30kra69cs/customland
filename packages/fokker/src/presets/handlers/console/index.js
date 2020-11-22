@@ -1,40 +1,40 @@
 const parallel = {
   log(action) {
-    const {messages} = action;
+    const {result} = action;
 
-    console?.log?.(...messages);
+    console?.log?.(...result);
   },
   error(action) {
-    const {messages} = action;
+    const {result} = action;
 
-    console?.error?.(...messages);
+    console?.error?.(...result);
   },
   warn(action) {
-    const {messages} = action;
+    const {result} = action;
 
-    console?.warn?.(...messages);
+    console?.warn?.(...result);
   },
 };
 
 const sequence = {
   log(action) {
-    const {messages} = action;
+    const {result} = action;
 
-    messages.forEach((message) => console?.log?.(message));
+    result.forEach((message) => console?.log?.(message));
   },
   error(action) {
-    const {messages} = action;
+    const {result} = action;
 
-    messages.forEach((message) => console?.error?.(message));
+    result.forEach((message) => console?.error?.(message));
   },
   warn(action) {
-    const {messages} = action;
+    const {result} = action;
 
-    messages.forEach((message) => console?.warn?.(message));
+    result.forEach((message) => console?.warn?.(message));
   },
 };
 
-const typeSwitcher = {
+const typeMapper = {
   parallel,
   sequence,
 };
@@ -48,7 +48,9 @@ function createConsoleHandler(initHandlerConfig = defaultHandlerConfig) {
 
   const {type} = handlerConfig;
 
-  return typeSwitcher[type] || parallel;
+  const handler = typeMapper[type] || parallel;
+
+  return handler;
 }
 
 module.exports = {
