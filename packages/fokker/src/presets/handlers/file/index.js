@@ -1,49 +1,41 @@
 const fs = require('fs');
 
-const {promisify} = require('../../../../../../infrastructure/utils/promisify');
-const console = require('../console');
-
-const writeFile = fs.writeFileSync;
-
-const defaultFileConfig = {
+const FILE_CONFIG = {
   name: 'logs',
   path: './',
 };
 
-function createFileHandler(initFileConfig = defaultFileConfig) {
-  const fileConfig = {...defaultFileConfig, ...initFileConfig};
-
+// TODO: rewrite and add sync manager
+function createFileHandler(initFileConfig = FILE_CONFIG) {
+  const fileConfig = {...FILE_CONFIG, ...initFileConfig};
   const {name, path} = fileConfig;
-
-  return {
+  const fileHandler = {
     log(action) {
-      const {messages} = action;
-
       try {
-        writeFile(`${path}${name}`, JSON.stringify(messages));
+        const {messages} = action;
+        fs.writeFile(`${path}${name}`, JSON.stringify(messages));
       } catch (err) {
         console?.log?.(err);
       }
     },
     error(action) {
-      const {messages} = action;
-
       try {
-        writeFile(`${path}${name}`, JSON.stringify(messages));
+        const {messages} = action;
+        fs.writeFile(`${path}${name}`, JSON.stringify(messages));
       } catch (err) {
         console?.log?.(err);
       }
     },
     warn(action) {
-      const {messages} = action;
-
       try {
-        writeFile(`${path}${name}`, JSON.stringify(messages));
+        const {messages} = action;
+        fs.writeFile(`${path}${name}`, JSON.stringify(messages));
       } catch (err) {
         console?.log?.(err);
       }
     },
   };
+  return fileHandler;
 }
 
 module.exports = {

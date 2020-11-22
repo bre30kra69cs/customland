@@ -1,6 +1,5 @@
 function timestamper() {
   const timestamp = Date.now();
-
   return timestamp;
 }
 

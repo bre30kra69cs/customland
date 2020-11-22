@@ -8,20 +8,12 @@ function defaultFormatter() {
 
 function createFormatterMiddleware(formatterConfig, counter) {
   const {formatter, type, level} = formatterConfig;
-  const messageFormatter = formatter({
-    ...formatterConfig,
-    counter,
-    timestamper,
-  });
-
+  const levelLowerCase = level.toLowerCase();
+  const messageFormatter = formatter({...formatterConfig, counter, timestamper});
   return function formatterAction(...source) {
     const result = messageFormatter(...source);
-    return {
-      type,
-      level,
-      source,
-      result,
-    };
+    const action = {type, level: levelLowerCase, source, result};
+    return action;
   };
 }
 

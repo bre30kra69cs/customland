@@ -1,34 +1,37 @@
 const {filterTap} = require('../../../../../../infrastructure/utils/tap');
 
-const {colors} = require('../colors/mac');
+const {COLORS} = require('../colors/mac');
+const {LEVELS} = require('../../../const');
 
-const levelMapper = {
-  none: '',
-  log: colors.foreground.cyan,
-  error: colors.foreground.red,
-  warn: colors.foreground.yellow,
+const LEVEL_MAPPER = {
+  [LEVELS.LOG]: COLORS.FOREGROUND.CYAN,
+  [LEVELS.ERROR]: COLORS.FOREGROUND.RED,
+  [LEVELS.WARN]: COLORS.FOREGROUND.YELLOW,
+  NONE: '',
 };
+
+const RESET = COLORS.ACTION.RESET;
 
 function createPrefix(formatterConfig, label, color) {
   const {count, timestamp, counter, timestamper} = formatterConfig;
   const countPrefix = count ? `[${counter()}]` : '';
   const timestampPrefix = timestamp ? `[${timestamper()}]` : '';
   const basePrefix = [countPrefix, timestampPrefix, label].filter(filterTap).join(' ');
-  const prefix = colors.actions.reset + color + basePrefix + colors.actions.reset;
+  const prefix = RESET + color + basePrefix + RESET;
   return prefix;
 }
 
 function formatObject(source) {
-  return source.map((item) => {
+  const formatedSource = source.map((item) => {
     const formatedItem = typeof item === 'object' ? JSON.stringify(item, null, 2) : item;
     return formatedItem;
   });
+  return formatedSource;
 }
 
 function labelFormatter(formatterConfig) {
   const {level} = formatterConfig;
-  const color = levelMapper[level] ?? levelMapper.none;
-
+  const color = LEVEL_MAPPER[level] ?? LEVEL_MAPPER.NONE;
   return function messageFormatter(label, ...source) {
     const prefix = createPrefix(formatterConfig, label, color);
     const formatedSource = formatObject(source);

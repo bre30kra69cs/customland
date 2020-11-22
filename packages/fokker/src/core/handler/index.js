@@ -21,7 +21,7 @@ function createHandlerMiddleware(handlers) {
   return function handlerAction(action) {
     const {level} = action;
     handlers.forEach((handler) => {
-      const levelHandler = handler[level];
+      const levelHandler = handler[level] || defaultHandler.log;
       levelHandler(action);
     });
   };
