@@ -1,3 +1,0 @@
-## FOKKER
-
-JavaScript logging framework

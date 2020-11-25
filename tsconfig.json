@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    // Dirs
+    "rootDir": "packages",
+    "outDir": "dist",
+    // Target
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    // Modules
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    // Imports
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    // Lib checks
+    "skipLibCheck": true,
+    // Checks
+    "strict": true,
+    // Helpers
+    "downlevelIteration": true,
+    "importHelpers": true
+  },
+  "include": ["packages"]
+}

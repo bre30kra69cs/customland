@@ -1,5 +1,9 @@
 ## TASKS
 
+Future work - 🛠️
+In progress - 🔥
+Done - ✅
+
 - Create code formatter vscode plugin - 🛠️
 - Create code formatter - 🛠️
 - Create linter vscode plugin - 🛠️
@@ -8,6 +12,6 @@
 - Create bundler - 🛠️
 - Create monorepo manager - 🛠️
 - Create test framework - 🛠️
-- Create cli framework (inpapupa) - 23.11.2020 🔥
+- Create cli framework (inpapupa) - 🛠️
 - Create console style handler - 🛠️
-- Create logging framework (fokker) - 22.11.2020 ✅
+- Create logging framework (fokker) - 🛠️
