@@ -1,8 +1,8 @@
 ## TASKS
 
-Future work - 🛠️
-In progress - 🔥
-Done - ✅
+> Future work - 🛠️<br/>
+> In progress - 🔥<br/>
+> Done - ✅<br/>
 
 - Create code formatter vscode plugin - 🛠️
 - Create code formatter - 🛠️
